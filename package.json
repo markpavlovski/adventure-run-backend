@@ -1,0 +1,30 @@
+{
+  "name": "Coffee",
+  "version": "0.0.1",
+  "description": "Coffee app",
+  "dependencies": {
+    "bcrypt-as-promised": "^1.1.0",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^8.2.1",
+    "knex": "^0.14.6",
+    "knex-postgis": "^0.6.0",
+    "moment": "^2.22.2",
+    "morgan": "^1.9.0",
+    "pg": "^7.4.1",
+    "shortid": "^2.2.8",
+    "socket.io": "^1.7.3"
+  },
+  "scripts": {
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js",
+    "knex": "knex",
+    "latest": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run"
+  },
+  "devDependencies": {
+    "dotenv": "^5.0.1"
+  }
+}
