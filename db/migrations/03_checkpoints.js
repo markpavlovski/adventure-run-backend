@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
     table.integer('order').notNullable().defaultTo(0)
     table.string('title').notNullable().defaultTo('')
     table.string('description').notNullable().defaultTo('')
-    table.string('latlang').notNullable().defaultTo('')
+    table.string('latlong').notNullable().defaultTo('')
     table.timestamps(true,true)
   })
 }

@@ -1,7 +1,21 @@
 exports.seed = function(knex, Promise) {
 
-  const tablesToClean = ['users','shops','products','product_option_size','product_option_milk','product_option_extra','product_with_options','order_ledger', 'order_product', 'user_shop_favorites', 'user_product_favorites'].reverse()
+  const tablesToClean = [
+    'users',
+    'tracks',
+    'checkpoints',
+    // 'runs',
+    // 'badges',
+    // 'runs_checkpoints',
+    // 'users_badges_runs',
+    // 'guilds',
+    // 'high_scores',
+    // 'guilds_users'
+  ].reverse()
 
-  return tablesToClean.reduce((acc, ele) => acc.then(() => knex(ele).del()), Promise.resolve())
+  return tablesToClean.reduce(
+    (acc, el) => acc.then(() => knex(el).del()),
+    Promise.resolve()
+  )
 
-};
+}
