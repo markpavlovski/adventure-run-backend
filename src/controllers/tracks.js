@@ -13,5 +13,11 @@ const getOne = (req, res, next) => {
   .catch(next)
 }
 
+const getCheckpoints = (req, res, next) => {
+  const id = req.params.track_id
+  dataModel.getCheckpoints(id)
+  .then((data) => res.status(200).json({ data }))
+  .catch(next)
+}
 
-module.exports = { getAll, getOne }
+module.exports = { getAll, getOne, getCheckpoints }

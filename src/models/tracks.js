@@ -17,5 +17,13 @@ const getOne = (id) => {
   )
 }
 
+const getCheckpoints = (track_id) => {
+  return (
+    db('checkpoints')
+    .where({ track_id })
+    .returning('*')
+  )
+}
 
-module.exports = { getAll, getOne}
+
+module.exports = { getAll, getOne, getCheckpoints }

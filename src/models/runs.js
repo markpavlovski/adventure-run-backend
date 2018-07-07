@@ -18,13 +18,24 @@ const getOne = (user_id, run_shortid) => {
   )
 }
 
-const create = (user_id, track_id, path, distance, time) => {
+const create = (user_id, track_id, path, distance, time, times) => {
   const run_shortid = shortid.generate()
   return (
     db('runs')
     .insert({ run_shortid, user_id, track_id, path, distance, time})
     .returning('*')
-  )
+  ).then(result => {
+    const run_id = result[0].id
+    console.log(times)
+    const checkpointRecords = times.map(record => {
+      console.log(record);
+      const {checkpoint_id, checkpoint_time} = record
+      return db('runs_checkpoints')
+      .insert({ run_id, checkpoint_id, checkpoint_time})
+    })
+    return Promise.all(checkpointRecords)
+    .then(()=>result)
+  })
 }
 
 const remove = (user_id, run_shortid) => {

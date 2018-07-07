@@ -6,7 +6,7 @@ exports.seed = function(knex, Promise) {
     'checkpoints',
     'runs',
     // 'badges',
-    // 'runs_checkpoints',
+    'runs_checkpoints',
     // 'users_badges_runs',
     // 'guilds',
     // 'high_scores',
