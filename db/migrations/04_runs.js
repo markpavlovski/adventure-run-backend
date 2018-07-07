@@ -3,6 +3,7 @@ const TABLE_NAME = 'runs'
 exports.up = function(knex, Promise) {
   return knex.schema.createTable(TABLE_NAME, function(table){
     table.increments()
+    table.string('run_shortid').notNullable().defaultTo('')
     table.integer('user_id').notNullable().references('users.id')
     table.integer('track_id').notNullable().references('tracks.id')
     table.json('path').notNullable()

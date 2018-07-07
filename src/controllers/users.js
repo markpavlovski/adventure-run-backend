@@ -5,6 +5,7 @@ const userModel = require('../models/users')
 //////////////////////////////////////////////////////////////////////////////
 
 function create(req, res, next){
+  console.log(req.body)
   if(!req.body.email){
     return next({ status: 400, message: 'Bad email'})
   }
