@@ -4,9 +4,10 @@ const dataController = require('../controllers/runs')
 const authController = require('../controllers/auth')
 
 
-router.get('/:userId', authController.isAuthenticated, dataController.get)
-router.post('/:userId', authController.isAuthenticated, dataController.create)
-router.delete('/:userId', authController.isAuthenticated, dataController.remove)
+router.get('/', authController.isAuthenticated, dataController.getAll)
+router.get('/:run_shortid', authController.isAuthenticated, dataController.getOne)
+router.post('/', authController.isAuthenticated, dataController.create)
+router.delete('/:run_shortid', authController.isAuthenticated, dataController.remove)
 
 
 module.exports = router

@@ -19,6 +19,7 @@ if(process.env.NODE_ENV !== 'production') require('dotenv').load()
 app.use('/auth', require('./routes/auth'))
 app.use('/users', require('./routes/users'))
 app.use('/runs', require('./routes/runs'))
+app.use('/tracks', require('./routes/tracks'))
 
 
 app.use((req, res, next) => next({status: 404, message: 'Route not found' }))

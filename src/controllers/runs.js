@@ -1,9 +1,5 @@
 const dataModel = require('../models/runs')
 
-const get = (req, res, next) => {
-  req.query.run_shortid ? getOne(req, res, next) : getAll(req, res, next)
-}
-
 const getAll = (req, res, next) => {
   const user_id = req.claim.id
   dataModel.getAll(user_id)
@@ -12,7 +8,7 @@ const getAll = (req, res, next) => {
 }
 
 const getOne = (req, res, next) => {
-  const run_shortid = req.query.run_shortid
+  const run_shortid = req.params.run_shortid
   const user_id = req.claim.id
   dataModel.getOne(user_id, run_shortid)
   .then((data) => res.status(200).json({ data }))
@@ -31,11 +27,11 @@ const create = (req, res, next) => {
 }
 
 const remove = (req, res, next) => {
-  const run_shortid = req.query.run_shortid
+  const run_shortid = req.params.run_shortid
   const user_id = req.claim.id
   dataModel.remove(user_id, run_shortid)
     .then((data) => res.status(200).json({ data }))
     .catch(next)
 }
 
-module.exports = { get, create, remove }
+module.exports = { getOne, getAll, create, remove }
