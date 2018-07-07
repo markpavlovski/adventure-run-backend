@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
     table.string('last_name').notNullable().defaultTo('')
     table.string('email').notNullable().defaultTo('')
     table.string('hashed_password').notNullable().defaultTo('')
-    table.string('picture').defaultTo('http://www.placebear.com/50/50')
+    table.string('picture').defaultTo('')
     table.timestamps(true,true)
   })
 }
