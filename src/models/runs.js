@@ -1,12 +1,13 @@
 const db = require('../../db/knex')
 const shortid = require('shortid')
-
+const knex = require('knex')
 
 const getAll = (user_id) => {
   return (
     db('runs')
     .where({ user_id })
-    .returning('*')
+    .join('tracks', 'tracks.id', 'runs.track_id')
+    .select(knex.raw('runs.*'), knex.raw('tracks.latlong'), knex.raw('tracks.name'))
   ).then(runs => {
     const checkpoints = runs.map(run => (
       db('runs_checkpoints')
