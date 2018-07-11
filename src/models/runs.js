@@ -7,7 +7,17 @@ const getAll = (user_id) => {
     db('runs')
     .where({ user_id })
     .returning('*')
-  )
+  ).then(runs => {
+    const checkpoints = runs.map(run => (
+      db('runs_checkpoints')
+      .where({ run_id: run.id })
+      .returning('*')
+    ))
+    return Promise.all(checkpoints).then(results => {
+      const detailedRuns = runs.map((run,idx)=>({...run, checkpoints: results[idx]}))
+      return detailedRuns
+    })
+  })
 }
 
 const getOne = (user_id, run_shortid) => {
