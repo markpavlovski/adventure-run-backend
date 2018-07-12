@@ -16,14 +16,14 @@ const getOne = (req, res, next) => {
 }
 
 const create = (req, res, next) => {
-  const {track_id, path, distance, time, times} = req.body
+  const {track_id, path, distance, time, times, badge_ids} = req.body
   const user_id = req.claim.id
 
   if (!(track_id && path && distance && time && times)) {
     return next({ status: 400, message: 'Bad request'})
   }
 
-  dataModel.create(user_id, track_id, path, distance, time, times)
+  dataModel.create(user_id, track_id, path, distance, time, times, badge_ids)
   .then((data) => res.status(200).json({ data }))
   .catch(next)
 }

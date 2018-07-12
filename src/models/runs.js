@@ -1,4 +1,5 @@
 const db = require('../../db/knex')
+const badges = require('./badges')
 const shortid = require('shortid')
 const knex = db
 
@@ -30,25 +31,31 @@ const getOne = (user_id, run_shortid) => {
   )
 }
 
-const create = (user_id, track_id, path, distance, time, times) => {
+const create = (user_id, track_id, path, distance, time, times, badge_ids) => {
   const run_shortid = shortid.generate()
   return (
     db('runs')
     .insert({ run_shortid, user_id, track_id, path, distance, time})
     .returning('*')
-  ).then(result => {
+  )
+  .then(result => {
     const run_id = result[0].id
-    console.log(times)
     const checkpointRecords = times.map(record => {
-      console.log(record);
       const {checkpoint_id, checkpoint_time} = record
       return db('runs_checkpoints')
       .insert({ run_id, checkpoint_id, checkpoint_time})
+      .returning('*')
     })
     return Promise.all(checkpointRecords)
     .then(()=>result)
   })
+  .then(result => {
+    const run_id = result[0].id
+    return badges.create(user_id, run_id, badge_ids)
+    .then(()=>result)
+  })
 }
+
 
 const remove = (user_id, run_shortid) => {
   return (

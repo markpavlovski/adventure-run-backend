@@ -5,7 +5,7 @@ const shortid = require('shortid')
 const getAll = () => {
   return (
     db('tracks')
-    .returning('*')
+    .select('*')
   )
 }
 
@@ -13,7 +13,7 @@ const getOne = (id) => {
   return (
     db('tracks')
     .where({ id })
-    .returning('*')
+    .select('*')
   )
 }
 
@@ -21,9 +21,18 @@ const getCheckpoints = (track_id) => {
   return (
     db('checkpoints')
     .where({ track_id })
-    .returning('*')
+    .select('*')
+  )
+}
+
+const getBadges = (track_id) => {
+  return (
+    db('tracks_badges')
+    .where({ track_id })
+    .join('badges', 'badges.id', 'tracks_badges.badge_id')
+    .select(db.raw('badges.*'))
   )
 }
 
 
-module.exports = { getAll, getOne, getCheckpoints }
+module.exports = { getAll, getOne, getCheckpoints, getBadges }
