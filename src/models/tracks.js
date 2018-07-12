@@ -7,6 +7,16 @@ const getAll = () => {
     db('tracks')
     .select('*')
   )
+  .then(tracks => {
+    const badgePromises = tracks.map(track => getBadges(track.id))
+    return Promise.all(badgePromises)
+    .then(trackBadges => {
+      trackBadges.forEach((badges,idx) => {
+        tracks[idx].badges = badges
+      })
+      return tracks
+    })
+  })
 }
 
 const getOne = (id) => {

@@ -21,6 +21,4 @@ const create = (user_id, run_id, badge_ids) => {
 
 
 
-
-
 module.exports = { create, getAll }
