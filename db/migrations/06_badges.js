@@ -3,7 +3,6 @@ const TABLE_NAME = 'badges'
 exports.up = function(knex, Promise) {
   return knex.schema.createTable(TABLE_NAME, function(table){
     table.increments()
-    table.integer('track_id').notNullable().references('tracks.id')
     table.string('name').notNullable().defaultTo('')
     table.string('description').notNullable().defaultTo('')
     table.timestamps(true,true)

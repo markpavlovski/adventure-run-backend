@@ -41,7 +41,7 @@ const INITIAL_TRACK_DATA = [
   },
   {
     id: 5,
-    name: 'Montlake Brige Loop',
+    name: 'Montlake Bridge Loop',
     latlong: '47.647282, -122.304621',
     description: '',
     distance: 5,

@@ -5,12 +5,13 @@ exports.seed = function(knex, Promise) {
     'tracks',
     'checkpoints',
     'runs',
-    // 'badges',
     'runs_checkpoints',
+    'badges',
+    'tracks_badges',
     // 'users_badges_runs',
     // 'guilds',
-    // 'high_scores',
     // 'guilds_users'
+    // 'high_scores',
   ].reverse()
 
   return tablesToClean.reduce(
