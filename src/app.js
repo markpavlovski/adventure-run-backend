@@ -10,7 +10,7 @@ const app = express()
 app.disable('x-powered-by')
 app.use(cors())
 app.use(morgan('dev'))
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '50mb'}))
 
 if(process.env.NODE_ENV === 'development') app.use(morgan('dev'))
 if(process.env.NODE_ENV !== 'production') require('dotenv').load()
